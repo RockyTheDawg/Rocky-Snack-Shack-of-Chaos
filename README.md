@@ -1,8 +1,8 @@
 # Rocky FunHouse!
 
-A furry, food-themed easter egg page starring Rocky, an Aussie shepherd with a very serious snack agenda.
+This site was made as a joke, it's a running joke in a server on discord which I go by _Rocky "Hungry Rocks" TheDog_. This site is for pure giigle and boredom related. All info about this site can below inculding credits for each contributors regardless if they're on the Github Repo. 
 
-## What Is Inside
+## What you can find Inside!
 
 - A full-screen **Rocky FunHouse!** homepage.
 - A transparent Aussie puppy pop-out using `assets/rocky-puppy.png`.
@@ -25,7 +25,7 @@ A furry, food-themed easter egg page starring Rocky, an Aussie shepherd with a v
 - Fake Terms popup on every visit.
 - No build step needed. It is plain HTML, CSS, and JavaScript.
 
-## Files
+## Files on hand.
 
 - `index.html` - the page structure.
 - `styles.css` - visuals, layout, animation, and responsive behavior.
@@ -35,7 +35,7 @@ A furry, food-themed easter egg page starring Rocky, an Aussie shepherd with a v
 - `assets/dog-treat.png` - hidden treat bag image.
 - `assets/river-cat.png` - River cameo image for the `RIVER` easter egg.
 
-## How To Run Locally
+## How To Run Locally.
 
 Open `index.html` in a browser, or run a small local server from the project folder:
 
@@ -49,12 +49,29 @@ Then visit:
 http://127.0.0.1:5173/
 ```
 
-## Uploading To GitHub
+## Uploading To GitHub.
 
 1. Create a new GitHub repository.
 2. Upload `index.html`, `styles.css`, `script.js`, `README.md`, and the `assets` folder.
 3. To publish with GitHub Pages, go to the repository settings, open **Pages**, and deploy from the main branch.
 
-## Customizing
+## Customizing.
 
 Change the food icons, mood messages, and easter egg behavior in `script.js`. Change the background, colors, title styling, and dog placement in `styles.css`.
+
+## Credits: 
+Site was Made by Rocky "Rocks" The Dawg (Github)
+
+Special thanks to River (@RiverTheCat) Via Discord
+
+Shoutout to River (@RiverTheCat) Via Discord for the River word hidden animation idea(s).
+
+## Contacts
+
+If you wish to contact me for whatever reason, please refer the email on the profile or use officialrockymedia@gmail.com for inquiries. For faster replies, use Discord or telegram 
+
+**Discord: rockythedog**
+
+**Telegram: @rockythedog100**
+
+## Thank you and please share this with your friends!
