@@ -221,9 +221,19 @@ function flipRocky() {
 
 function boopRocky() {
   boops += 1;
-  dogPopout?.classList.add("booped");
-  setTimeout(() => dogPopout?.classList.remove("booped"), 450);
-  setMood(boops >= 8 ? "boop license revoked." : `Boops: ${boops}`);
+  setMood(getBoopMessage(), boops >= 25 ? 4200 : 3000);
+}
+
+function getBoopMessage() {
+  if (boops >= 200) return `Boops: ${boops}. Rocky has contacted snack legal.`;
+  if (boops >= 150) return `Boops: ${boops}. The nose is now a historical landmark.`;
+  if (boops >= 125) return `Boops: ${boops}. Boop economy in shambles.`;
+  if (boops >= 100) return `Boops: ${boops}. Boop license revoked.`;
+  if (boops >= 75) return `Boops: ${boops}. Rocky is filing a formal snack complaint.`;
+  if (boops >= 50) return `Boops: ${boops}. The nose has entered witness protection.`;
+  if (boops >= 25) return `Boops: ${boops}. You have unlocked suspicious boop behavior.`;
+  if (boops >= 10) return `Boops: ${boops}. okay that's a little too much.`;
+  return `Boops: ${boops}`;
 }
 
 function triggerZoomies() {
