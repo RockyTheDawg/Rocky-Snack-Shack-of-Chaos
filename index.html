@@ -1,224 +1,153 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Feed Rocky</title>
-    <meta
-      name="description"
-      content="Yoooo Wanna have fun messing with Rocky? Why not feed him, or mess around with the buttons perhaps. Wut u waiting for, click the link- I SAID CLICK IT!"
-    />
-    <meta property="og:title" content="Feed Rocky" />
-    <meta
-      property="og:description"
-      content="Yoooo Wanna have fun messing with Rocky? Why not feed him, or mess around with the buttons perhaps. Wut u waiting for, click the link- I SAID CLICK IT!"
-    />
-   <meta property="og:image" content="https://rockythedawg.github.io/Rocky-Snack-Shack-of-Chaos/aussie-tab-logo-transparent-512.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rockythedawg.github.io/Rocky-Snack-Shack-of-Chaos/" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Feed Rocky" />
-    <meta
-      name="twitter:description"
-      content="Yoooo Wanna have fun messing with Rocky? Why not feed him, or mess around with the buttons perhaps. Wut u waiting for, click the link- I SAID CLICK IT!"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feed Rocky</title>
+  <meta name="description" content="Yoooo Wanna have fun messing with Rocky? Why not feed him, or mess around with the buttons perhaps. Wut u waiting for, click the link- I SAID CLICK IT!" />
+  <meta property="og:title" content="Feed Rocky" />
+  <meta property="og:description" content="Yoooo Wanna have fun messing with Rocky? Why not feed him, or mess around with the buttons perhaps. Wut u waiting for, click the link- I SAID CLICK IT!" />
+  <meta property="og:image" content="https://rockythedawg.github.io/Rocky-Snack-Shack-of-Chaos/aussie-tab-logo-transparent-512.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rockythedawg.github.io/Rocky-Snack-Shack-of-Chaos/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Feed Rocky" />
+  <meta name="twitter:description" content="Yoooo Wanna have fun messing with Rocky? Why not feed him, or mess around with the buttons perhaps. Wut u waiting for, click the link- I SAID CLICK IT!" />
   <meta name="twitter:image" content="https://rockythedawg.github.io/Rocky-Snack-Shack-of-Chaos/aussie-tab-logo-transparent-512.png" />
-   <link rel="icon" type="image/png" href="aussie-tab-logo-transparent-512.png" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="hotdog-rain" id="hotdogRain" aria-hidden="true"></div>
+  <link rel="icon" type="image/png" href="aussie-tab-logo-transparent-512.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="funhouse" aria-label="Rocky FunHouse">
+    <button class="background-nose-button" id="backgroundNoseButton" type="button" aria-label="Boop the big background dog nose"></button>
 
-    <main class="funhouse" aria-label="Rocky FunHouse">
-  <button class="background-nose-button" id="backgroundNoseButton" type="button" aria-label="Boop the big background dog nose"></button>
-
-  <section class="hero">
-        <h1>
-          <a href="https://github.com/RockyTheDawg/Rocky-Snack-Shack-of-Chaos" target="_blank" rel="noreferrer">
-            Rocky-Snack-Shack-of-Chaos
-          </a>
-        </h1>
-        <p class="subtitle">
-          Bored? Have a lot of free time?, need something to do? Well start by feeding me...
-        </p>
-      </section>
-
-      <section class="feed-scene" aria-label="Feed Rocky">
-        <div class="dog-stage">
-          <div class="dog-popout" id="dogPopout" aria-label="Rocky the Aussie shepherd">
-            <img class="dog-photo" src="assets/rocky-puppy.png" alt="Rocky the Aussie puppy" />
-            <button class="nose-button" id="noseButton" type="button" aria-label="Boop Rocky's nose"></button>
-          </div>
-
-          <div class="food-ground" id="foodGround" aria-label="Food on the ground"></div>
-        </div>
-      </section>
-
-      <button class="amazon-package" id="amazonPackage" type="button" aria-label="Hidden Amazon package"></button>
-      <button class="taco-recipe-button" id="tacoRecipeButton" type="button" aria-label="Open a random taco recipe">🌮</button>
-
-      <button
-        class="hidden-treat-bag"
-        id="treatBag"
-        type="button"
-        aria-label="Hidden treat bag"
-      >
-        <img src="assets/dog-treat.png" alt="" />
-        <span class="bag-label">treats</span>
-      </button>
-
-      <button class="secret-paw" id="secretPaw" type="button" aria-label="Hidden zoomies paw">paw</button>
-      <button class="autograph-pencil" id="autographPencil" type="button" aria-label="Rocky autograph pencil">pencil</button>
-      <button class="credits-button" id="creditsButton" type="button" aria-label="Open credits">🦴</button>
-      <button class="commands-button" id="commandsButton" type="button" aria-label="Open typed commands">🎾</button>
-      <button class="fortune-cookie" id="fortuneCookie" type="button" aria-label="Rocky fortune cookie"></button>
-    </main>
-
-    <div class="mood-card" id="moodCard" role="status" aria-live="polite">
-      Rocky mood: hungry
-    </div>
-
-    <div class="debt-card" id="debtCard" role="status" aria-live="polite">
-      <strong>Calculating snack debt...</strong>
-      <span>Food debt? Haha funny one...you never tax me EVER!</span>
-    </div>
-
-    <div class="welcome-modal show" id="welcomeModal" aria-hidden="false">
-      <div class="welcome-panel" role="dialog" aria-modal="true" aria-label="Welcome">
-        <h2>Welcome!</h2>
-        <p>
-          This site is for funnies and a cool way to cure boredom at times. Every button leads to
-          something or does something, and typing in some words, such as "awoo" will have a cool
-          affect! Ready to sniff around? Click LETS GO!
-        </p>
-       <button
-  class="lets-go"
-  id="letsGoButton"
-  type="button"
-  onclick="document.querySelector('#welcomeModal').classList.remove('show'); document.querySelector('#welcomeModal').setAttribute('aria-hidden', 'true');"
->
-  LETS GO!
-</button>
-      </div>
-    </div>
-
-    <div class="terms-modal show" id="termsModal" aria-hidden="false">
-      <div class="terms-panel" role="dialog" aria-modal="true" aria-label="Fake terms">
-        <h2>Terms</h2>
-        <p>By entering this site, you agree to feed Rocky indefinitely.</p>
-        <button
-  class="terms-accept"
-  id="termsAccept"
-  type="button"
-  onclick="document.querySelector('#termsModal').classList.remove('show'); document.querySelector('#termsModal').setAttribute('aria-hidden', 'true');"
->
-  I accept the snack contract
-</button>
-      </div>
-    </div>
-
-    <div class="video-modal" id="videoModal" aria-hidden="true">
-      <div class="video-panel" role="dialog" aria-modal="true" aria-label="Secret treat bag video">
-        <button class="video-close" id="videoClose" type="button" aria-label="Close video">x</button>
-        <iframe
-          id="rickrollFrame"
-          title="Secret treat bag video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-        <a class="video-fallback" href="https://youtu.be/dQw4w9WgXcQ?si=sCEXMA3Zv0sk_Dd3" target="_blank" rel="noreferrer">
-          Open video if the player refuses snacks
+    <section class="hero">
+      <h1>
+        <a href="https://github.com/RockyTheDawg/Rocky-Snack-Shack-of-Chaos" target="_blank" rel="noreferrer">
+          Rocky-Snack-Shack-of-Chaos
         </a>
+      </h1>
+      <p class="subtitle">Bored? Have a lot of free time?, need something to do? Well start by feeding me...</p>
+    </section>
+
+    <section class="feed-scene" aria-label="Feed Rocky">
+      <div class="dog-popout" id="dogPopout" aria-label="Rocky the Aussie shepherd">
+        <img class="dog-photo" src="assets/rocky-puppy.png" alt="Rocky the Aussie puppy" />
+        <button class="nose-button" id="noseButton" type="button" aria-label="Boop Rocky's nose"></button>
       </div>
+      <div class="food-ground" id="foodGround" aria-label="Food on the ground"></div>
+    </section>
+
+    <nav class="side-rail" aria-label="Secret buttons">
+      <button class="icon-button amazon-package" id="amazonPackage" type="button" aria-label="Open Amazon treats">📦</button>
+      <button class="icon-button fortune-cookie" id="fortuneCookie" type="button" aria-label="Rocky fortune cookie">🥠</button>
+      <button class="icon-button taco-recipe-button" id="tacoRecipeButton" type="button" aria-label="Open a random taco recipe">🌮</button>
+      <button class="icon-button commands-button" id="commandsButton" type="button" aria-label="Open typed commands">🎾</button>
+      <button class="icon-button credits-button" id="creditsButton" type="button" aria-label="Open credits">🦴</button>
+      <button class="icon-button autograph-pencil" id="autographPencil" type="button" aria-label="Rocky autograph pencil">✏️</button>
+    </nav>
+
+    <button class="hidden-treat-bag" id="treatBag" type="button" aria-label="Hidden treat bag">
+      <img src="assets/dog-treat.png" alt="" />
+      <span>treats</span>
+    </button>
+
+    <button class="secret-paw" id="secretPaw" type="button" aria-label="Hidden zoomies paw">🐾<span>paw</span></button>
+  </main>
+
+  <div class="mood-card" id="moodCard" role="status" aria-live="polite">Rocky mood: hungry</div>
+  <div class="debt-card" id="debtCard" role="status" aria-live="polite">
+    <strong>Calculating snack debt...</strong>
+    <span>Food debt? Haha funny one...you never tax me EVER!</span>
+  </div>
+  <div class="receipt" id="receipt" role="status" aria-live="polite">
+    <strong>Rocky Snack Receipt</strong>
+    <div id="receiptLines"></div>
+    <span>Tax: absolutely not</span>
+    <span>Total: more snacks</span>
+  </div>
+  <div class="river-badge" id="riverBadge">Inspired by River (@RiverTheCat)</div>
+  <div class="river-cameo" id="riverCameo" aria-hidden="true">
+    <img src="assets/river-cat.png" alt="" />
+  </div>
+  <div class="paw-trail" id="pawTrail" aria-hidden="true"></div>
+  <div class="hotdog-rain" id="hotdogRain" aria-hidden="true"></div>
+  <div class="autograph-layer" id="autographLayer" aria-hidden="true"></div>
+
+  <div class="modal show" id="welcomeModal" aria-hidden="false">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Welcome">
+      <h2>Welcome!</h2>
+      <p>This site is for funnies and a cool way to cure boredom at times. Every button leads to something or does something, and typing in some words, such as "awoo" will have a cool affect! Ready to sniff around? Click LETS GO!</p>
+      <button class="primary-action" id="letsGoButton" type="button">LETS GO!</button>
     </div>
+  </div>
 
-    <div class="credits-modal" id="creditsModal" aria-hidden="true">
-      <div class="credits-panel" role="dialog" aria-modal="true" aria-label="Credits">
-        <button class="credits-close" id="creditsClose" type="button" aria-label="Close credits">x</button>
-        <h2>Credits</h2>
-        <p>Site made by RockyTheDog</p>
-        <p>Site inspired by River (@RiverTheCat)</p>
-        <p>Images were taken from google</p>
-      </div>
+  <div class="modal" id="termsModal" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Fake terms">
+      <h2>Terms</h2>
+      <p>By entering this site, you agree to feed Rocky indefinitely.</p>
+      <button class="primary-action" id="termsAccept" type="button">I accept the snack contract</button>
     </div>
+  </div>
 
-    <div class="commands-modal" id="commandsModal" aria-hidden="true">
-      <div class="commands-panel" role="dialog" aria-modal="true" aria-label="Typed commands">
-        <button class="commands-close" id="commandsClose" type="button" aria-label="Close typed commands">x</button>
-        <h2>Typed Commands</h2>
-        <form class="command-entry" id="commandForm">
-          <label for="commandInput">Type a command</label>
-          <div>
-            <input id="commandInput" type="text" autocomplete="off" placeholder="awoo" />
-            <button type="submit">Run</button>
-          </div>
-        </form>
-        <dl>
-          <div>
-            <dt>AWOO</dt>
-            <dd>Makes the title howl and wiggle.</dd>
-          </div>
-          <div>
-            <dt>HOTDOGZ</dt>
-            <dd>Makes hotdogs rain for a few seconds.</dd>
-          </div>
-          <div>
-            <dt>RIVER</dt>
-            <dd>Shows the River badge and cat confetti cameo.</dd>
-          </div>
-          <div>
-            <dt>BARK</dt>
-            <dd>Opens the Bark Translator popup.</dd>
-          </div>
-          <div>
-            <dt>SQUIRREL</dt>
-            <dd>Makes Rocky spin and buttons scatter.</dd>
-          </div>
-          <div>
-            <dt>BRAIN</dt>
-            <dd>Turns the title into ONLY SNACKS.</dd>
-          </div>
-        </dl>
-      </div>
+  <div class="modal" id="creditsModal" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Credits">
+      <button class="close-button" id="creditsClose" type="button" aria-label="Close credits">x</button>
+      <h2>Credits</h2>
+      <p>Site made by RockyTheDog</p>
+      <p>Credit to River (@RiverTheCat)</p>
+      <p>Images were taken from Google</p>
     </div>
+  </div>
 
-    <div class="river-badge" id="riverBadge" role="status" aria-live="polite">
-      Inspired by River (@RiverTheCat)
+  <div class="modal" id="commandsModal" aria-hidden="true">
+    <div class="panel commands-panel" role="dialog" aria-modal="true" aria-label="Typed commands">
+      <button class="close-button" id="commandsClose" type="button" aria-label="Close typed commands">x</button>
+      <h2>Typed Commands</h2>
+      <form class="command-entry" id="commandForm">
+        <label for="commandInput">Type a command</label>
+        <div>
+          <input id="commandInput" type="text" autocomplete="off" placeholder="awoo" />
+          <button type="submit">Run</button>
+        </div>
+      </form>
+      <dl>
+        <div><dt>AWOO</dt><dd>Makes the title howl.</dd></div>
+        <div><dt>HOTDOGZ</dt><dd>Makes hotdogs rain.</dd></div>
+        <div><dt>RIVER</dt><dd>Shows the River cameo.</dd></div>
+        <div><dt>BARK</dt><dd>Opens the Bark Translator.</dd></div>
+        <div><dt>SQUIRREL</dt><dd>Sends Rocky into chaos mode.</dd></div>
+        <div><dt>BRAIN</dt><dd>Turns the title into ONLY SNACKS.</dd></div>
+      </dl>
     </div>
+  </div>
 
-    <div class="river-cameo" id="riverCameo" aria-hidden="true">
-      <img src="assets/river-cat.png" alt="" />
+  <div class="modal" id="barkModal" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Bark Translator">
+      <button class="close-button" id="barkClose" type="button" aria-label="Close bark translator">x</button>
+      <h2>Bark Translator</h2>
+      <p>woof = feed me now</p>
+      <p>bark = Craving dessert</p>
+      <p>awoo = Have any Dr Pepper?</p>
     </div>
+  </div>
 
-    <div class="paw-trail" id="pawTrail" aria-hidden="true"></div>
-    <div class="autograph-layer" id="autographLayer" aria-hidden="true"></div>
-
-    <div class="bark-modal" id="barkModal" aria-hidden="true">
-      <div class="bark-panel" role="dialog" aria-modal="true" aria-label="Bark Translator">
-        <button class="bark-close" id="barkClose" type="button" aria-label="Close bark translator">x</button>
-        <h2>BARK TRANSLATOR</h2>
-        <p>woof = feed me now</p>
-        <p>bark = Craving dessert</p>
-        <p>awoo = Have any Dr Pepper?</p>
-      </div>
+  <div class="modal" id="courtModal" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Snack Court">
+      <button class="close-button" id="courtClose" type="button" aria-label="Close snack court">x</button>
+      <h2>Snack Court</h2>
+      <p>Rocky has been found <strong>not guilty by reason of hungry.</strong></p>
     </div>
+  </div>
 
-    <div class="court-modal" id="courtModal" aria-hidden="true">
-      <div class="court-panel" role="dialog" aria-modal="true" aria-label="Snack Court">
-        <button class="court-close" id="courtClose" type="button" aria-label="Close snack court">x</button>
-        <h2>Snack Court</h2>
-        <p>Rocky has been found:</p>
-        <strong>not guilty by reason of hungry.</strong>
-      </div>
+  <div class="modal video-modal" id="videoModal" aria-hidden="true">
+    <div class="video-panel" role="dialog" aria-modal="true" aria-label="Secret treat bag video">
+      <button class="close-button" id="videoClose" type="button" aria-label="Close video">x</button>
+      <iframe id="rickrollFrame" title="Secret treat bag video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <a href="https://youtu.be/dQw4w9WgXcQ?si=sCEXMA3Zv0sk_Dd3" target="_blank" rel="noreferrer">Open video if the player refuses snacks</a>
     </div>
+  </div>
 
-    <div class="receipt" id="receipt" role="status" aria-live="polite">
-      <strong>Rocky Snack Receipt</strong>
-      <div id="receiptLines"></div>
-      <span>Tax: absolutely not</span>
-      <span>Total: more snacks</span>
-    </div>
-
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>

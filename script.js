@@ -1,89 +1,63 @@
-const dogPopout = document.querySelector("#dogPopout");
-const moodCard = document.querySelector("#moodCard");
-const treatBag = document.querySelector("#treatBag");
-const foodGround = document.querySelector("#foodGround");
-const noseButton = document.querySelector("#noseButton");
-const backgroundNoseButton = document.querySelector("#backgroundNoseButton");
-const secretPaw = document.querySelector("#secretPaw");
-const autographPencil = document.querySelector("#autographPencil");
-const autographLayer = document.querySelector("#autographLayer");
-const debtCard = document.querySelector("#debtCard");
-const hotdogRain = document.querySelector("#hotdogRain");
-const title = document.querySelector("h1");
-const originalTitleText = title.textContent;
-const videoModal = document.querySelector("#videoModal");
-const videoClose = document.querySelector("#videoClose");
-const rickrollFrame = document.querySelector("#rickrollFrame");
-const creditsButton = document.querySelector("#creditsButton");
-const creditsModal = document.querySelector("#creditsModal");
-const creditsClose = document.querySelector("#creditsClose");
-const commandsButton = document.querySelector("#commandsButton");
-const commandsModal = document.querySelector("#commandsModal");
-const commandsClose = document.querySelector("#commandsClose");
-const commandForm = document.querySelector("#commandForm");
-const commandInput = document.querySelector("#commandInput");
-const welcomeModal = document.querySelector("#welcomeModal");
-const letsGoButton = document.querySelector("#letsGoButton");
-const termsModal = document.querySelector("#termsModal");
-const termsAccept = document.querySelector("#termsAccept");
-const amazonPackage = document.querySelector("#amazonPackage");
-const tacoRecipeButton = document.querySelector("#tacoRecipeButton");
-const riverBadge = document.querySelector("#riverBadge");
-const riverCameo = document.querySelector("#riverCameo");
-const pawTrail = document.querySelector("#pawTrail");
-const barkModal = document.querySelector("#barkModal");
-const barkClose = document.querySelector("#barkClose");
-const courtModal = document.querySelector("#courtModal");
-const courtClose = document.querySelector("#courtClose");
-const receipt = document.querySelector("#receipt");
-const receiptLines = document.querySelector("#receiptLines");
-const fortuneCookie = document.querySelector("#fortuneCookie");
+const $ = (selector) => document.querySelector(selector);
 
-let feedCount = 0;
-let boopCount = 0;
-let toastTimer;
-let debtTimer;
-let codeBuffer = "";
-let treatCooldown = false;
-let packageCooldown = false;
-let fortuneCooldown = false;
-let riverCooldown = false;
-let riverWalksRight = true;
-let autographCooldown = false;
-let brainTimer;
-let isNapping = false;
-let receiptShown = false;
-let courtShown = false;
-const snackCombo = new Set();
-const foodCounts = {};
-const fortunes = [
-  "A snack delayed is still a snack owed.",
-  "Trust the fluffy one near the fridge.",
-  "Your future contains crumbs and questionable choices.",
-  "A closed treat bag is just a puzzle.",
-  "Beware the orange. It knows too much.",
-  "Today is a good day to feed Rocky twice.",
-  "The path to wisdom is paved with fries.",
-  "If lost, follow the paw prints."
-];
+const funhouse = $(".funhouse");
+const dogPopout = $("#dogPopout");
+const moodCard = $("#moodCard");
+const treatBag = $("#treatBag");
+const foodGround = $("#foodGround");
+const noseButton = $("#noseButton");
+const backgroundNoseButton = $("#backgroundNoseButton");
+const secretPaw = $("#secretPaw");
+const autographPencil = $("#autographPencil");
+const autographLayer = $("#autographLayer");
+const debtCard = $("#debtCard");
+const hotdogRain = $("#hotdogRain");
+const title = $("h1");
+const originalTitleText = title ? title.textContent : "Rocky-Snack-Shack-of-Chaos";
+const videoModal = $("#videoModal");
+const videoClose = $("#videoClose");
+const rickrollFrame = $("#rickrollFrame");
+const creditsButton = $("#creditsButton");
+const creditsModal = $("#creditsModal");
+const creditsClose = $("#creditsClose");
+const commandsButton = $("#commandsButton");
+const commandsModal = $("#commandsModal");
+const commandsClose = $("#commandsClose");
+const commandForm = $("#commandForm");
+const commandInput = $("#commandInput");
+const welcomeModal = $("#welcomeModal");
+const letsGoButton = $("#letsGoButton");
+const termsModal = $("#termsModal");
+const termsAccept = $("#termsAccept");
+const amazonPackage = $("#amazonPackage");
+const tacoRecipeButton = $("#tacoRecipeButton");
+const fortuneCookie = $("#fortuneCookie");
+const riverBadge = $("#riverBadge");
+const riverCameo = $("#riverCameo");
+const pawTrail = $("#pawTrail");
+const barkModal = $("#barkModal");
+const barkClose = $("#barkClose");
+const courtModal = $("#courtModal");
+const courtClose = $("#courtClose");
+const receipt = $("#receipt");
+const receiptLines = $("#receiptLines");
 
 const foods = [
   { icon: "🍔", name: "burger" },
-  { icon: "🍊", name: "orange", forbidden: true },
-  { icon: "🍞", name: "toast" },
-  { icon: "🥐", name: "croissant" },
-  { icon: "🦴", name: "bone" },
+  { icon: "🍟", name: "fries" },
   { icon: "🥤", name: "soda" },
   { icon: "🥓", name: "bacon" },
-  { icon: "🧀", name: "cheese" },
-  { icon: "🍗", name: "drumstick" },
-  { icon: "🌭", name: "hotdog" },
-  { icon: "🥩", name: "steak" },
-  { icon: "🍟", name: "fries" },
-  { icon: "🥯", name: "bagel" },
+  { icon: "🥐", name: "croissant" },
   { icon: "🥞", name: "pancakes" },
-  { icon: "🍕", name: "pizza" }
-  const tacoRecipes = [
+  { icon: "🥯", name: "bagel" },
+  { icon: "🍕", name: "pizza" },
+  { icon: "🍗", name: "drumstick" },
+  { icon: "🧀", name: "cheese" },
+  { icon: "🍞", name: "toast" },
+  { icon: "🍊", name: "orange", forbidden: true }
+];
+
+const tacoRecipes = [
   "https://www.allrecipes.com/recipe/257865/easy-beef-street-tacos/",
   "https://www.allrecipes.com/recipe/245744/mexican-street-tacos/",
   "https://www.loveandlemons.com/tacos/",
@@ -94,24 +68,46 @@ const foods = [
   "https://cookieandkate.com/roasted-cauliflower-and-lentil-tacos/"
 ];
 
-const randomTacoRecipe = tacoRecipes[Math.floor(Math.random() * tacoRecipes.length)];
+const fortunes = [
+  "If lost, follow the paw prints.",
+  "A snack hidden is a snack temporarily misplaced.",
+  "The treat bag knows what you did.",
+  "Boop gently. The snack court is watching.",
+  "Today is a good day to feed Rocky twice."
+];
 
-function openRandomTacoRecipe() {
-  setMood("Taco wisdom selected. Opening recipe...");
-  window.open(randomTacoRecipe, "_blank", "noreferrer");
+const foodCounts = {};
+const comboFed = new Set();
+let totalFeeds = 0;
+let boops = 0;
+let toastTimer = 0;
+let debtTimer = 0;
+let brainTimer = 0;
+let videoCooldown = false;
+let riverCooldown = false;
+let riverDirectionRight = true;
+let codeBuffer = "";
+let courtShown = false;
+let isNapping = false;
+
+function on(element, event, handler) {
+  if (element) element.addEventListener(event, handler);
 }
-];
 
-const moods = [
-  "Rocky mood: hungry",
-  "Rocky mood: snack detected",
-  "Rocky mood: tail activated",
-  "Rocky mood: tiny zoomies",
-  "Rocky mood: full but watching you",
-  "Rocky mood: plotting dessert"
-];
+function showModal(modal) {
+  if (!modal) return;
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+}
 
-function setMood(message, duration = 2400) {
+function hideModal(modal) {
+  if (!modal) return;
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+function setMood(message, duration = 2600) {
+  if (!moodCard) return;
   moodCard.textContent = message;
   moodCard.classList.add("show");
   clearTimeout(toastTimer);
@@ -123,33 +119,88 @@ function shuffle(items) {
 }
 
 function renderFoods() {
-  const comboFoods = ["burger", "fries", "soda"].map((name) => foods.find((food) => food.name === name));
+  if (!foodGround) return;
+  const required = ["burger", "fries", "soda"].map((name) => foods.find((food) => food.name === name));
   const extras = shuffle(foods.filter((food) => !["burger", "fries", "soda"].includes(food.name))).slice(0, 3);
-  const selected = shuffle([...comboFoods, ...extras]);
+  const selected = shuffle([...required, ...extras]);
   foodGround.innerHTML = "";
 
-  selected.forEach((food, index) => {
+  selected.forEach((food) => {
     const button = document.createElement("button");
     button.className = "food-item";
     button.type = "button";
     button.dataset.food = food.name;
     button.dataset.icon = food.icon;
     button.dataset.forbidden = String(Boolean(food.forbidden));
-    button.style.setProperty("--slot", index);
     button.setAttribute("aria-label", `Toss ${food.name} to Rocky`);
     button.innerHTML = `<span class="food-icon">${food.icon}</span><span class="food-name">${food.name}</span>`;
-    button.addEventListener("click", () => tossFood(button));
+    on(button, "click", () => tossFood(button));
     foodGround.append(button);
   });
 }
 
+function tossFood(button) {
+  if (!button || isNapping) return;
+  const food = button.dataset.food;
+  foodCounts[food] = (foodCounts[food] || 0) + 1;
+  totalFeeds += 1;
+  comboFed.add(food);
+
+  button.classList.add("tossing");
+  dogPopout?.classList.add("eating");
+  setTimeout(() => {
+    button.remove();
+    dogPopout?.classList.remove("eating");
+  }, 780);
+
+  if (button.dataset.forbidden === "true") {
+    dogPopout?.classList.add("confused");
+    setMood("ugh healthy food detected! bleh", 3600);
+    setTimeout(() => dogPopout?.classList.remove("confused"), 2400);
+  } else {
+    setMood(randomMood(food));
+  }
+
+  if (comboFed.has("burger") && comboFed.has("fries") && comboFed.has("soda")) {
+    comboFed.clear();
+    setMood("maximum snack crime.", 4200);
+  }
+
+  if (totalFeeds % 4 === 0) showSnackDebt();
+  if (totalFeeds >= 7) showReceipt();
+  if (totalFeeds >= 10 && !courtShown) openCourt();
+  if (totalFeeds > 0 && totalFeeds % 9 === 0) triggerNap();
+
+  if (foodGround && foodGround.children.length < 2) {
+    setTimeout(renderFoods, 650);
+  }
+}
+
+function randomMood(food) {
+  const moods = {
+    soda: "Rocky mood: chaotic",
+    burger: "Rocky mood: loyal",
+    fries: "Rocky mood: unstoppable",
+    bacon: "Rocky mood: bacon certified",
+    pizza: "Rocky mood: suspiciously Italian"
+  };
+  return moods[food] || shuffle([
+    "Rocky mood: hungry",
+    "Rocky mood: snack detected",
+    "Rocky mood: tail activated",
+    "Rocky mood: plotting dessert"
+  ])[0];
+}
+
 function showSnackDebt() {
+  if (!debtCard) return;
   clearTimeout(debtTimer);
   debtCard.classList.add("show");
-  debtTimer = setTimeout(() => debtCard.classList.remove("show"), 2600);
+  debtTimer = setTimeout(() => debtCard.classList.remove("show"), 3400);
 }
 
 function showReceipt() {
+  if (!receipt || !receiptLines) return;
   receiptLines.innerHTML = "";
   Object.entries(foodCounts).forEach(([food, count]) => {
     const line = document.createElement("span");
@@ -160,263 +211,126 @@ function showReceipt() {
   setTimeout(() => receipt.classList.remove("show"), 5600);
 }
 
-function openCourt() {
-  courtShown = true;
-  courtModal.classList.add("show");
-  courtModal.setAttribute("aria-hidden", "false");
-}
-
-function closeCourt() {
-  courtModal.classList.remove("show");
-  courtModal.setAttribute("aria-hidden", "true");
-}
-
-function triggerNap() {
-  isNapping = true;
-  dogPopout.classList.add("napping");
-  setMood("Rocky is processing snacks...");
-  setTimeout(() => {
-    isNapping = false;
-    dogPopout.classList.remove("napping");
-    setMood("Rocky woke up and immediately remembered snacks.");
-  }, 5000);
-}
-
-function tossFood(button) {
-  if (isNapping) {
-    setMood("Rocky is asleep. Snacks must wait 5 business seconds.");
-    return;
-  }
-  if (button.classList.contains("tossing")) return;
-
-  feedCount += 1;
-  const food = button.dataset.food;
-  const isForbiddenOrange = button.dataset.forbidden === "true";
-  const mood = moods[Math.min(feedCount, moods.length - 1)];
-  snackCombo.add(food);
-  foodCounts[food] = (foodCounts[food] || 0) + 1;
-
-  button.classList.add("tossing");
-  dogPopout.classList.add("eating");
-
-  if (isForbiddenOrange) {
-    dogPopout.classList.add("confused");
-    setMood("ugh healthy food detected! bleh");
-  } else {
-    setMood(`${mood}. ${food} accepted.`);
-  }
-
-  if (Math.random() < 0.18) setTimeout(showSnackDebt, 620);
-  if (feedCount >= 10 && !receiptShown) {
-    receiptShown = true;
-    setTimeout(showReceipt, 500);
-  }
-  if (feedCount >= 14 && !courtShown) setTimeout(openCourt, 900);
-  if (feedCount > 0 && feedCount % 16 === 0) setTimeout(triggerNap, 900);
-  if (["burger", "fries", "soda"].every((item) => snackCombo.has(item))) {
-    snackCombo.clear();
-    setTimeout(() => setMood("maximum snack crime."), 620);
-  }
-
-  setTimeout(() => {
-    button.classList.remove("tossing");
-    dogPopout.classList.remove("eating", "confused");
-  }, 820);
+function flipRocky() {
+  if (!dogPopout) return;
+  dogPopout.classList.remove("flipping");
+  void dogPopout.offsetWidth;
+  dogPopout.classList.add("flipping");
+  setTimeout(() => dogPopout.classList.remove("flipping"), 900);
 }
 
 function boopRocky() {
-  boopCount += 1;
-  dogPopout.classList.add("booped");
-  setTimeout(() => dogPopout.classList.remove("booped"), 420);
-
-  if (boopCount >= 7) {
-    setMood("Boop license revoked.");
-    return;
-  }
-  setMood(`Boop ${boopCount}. Rocky is keeping records.`);
-}
-
-function flipRocky() {
-  dogPopout.classList.remove("flipping");
-  window.requestAnimationFrame(() => dogPopout.classList.add("flipping"));
-  setTimeout(() => dogPopout.classList.remove("flipping"), 850);
+  boops += 1;
+  dogPopout?.classList.add("booped");
+  setTimeout(() => dogPopout?.classList.remove("booped"), 450);
+  setMood(boops >= 8 ? "boop license revoked." : `Boops: ${boops}`);
 }
 
 function triggerZoomies() {
-  document.body.classList.add("zoomies");
-  dogPopout.classList.add("zooming");
-  setMood("Hidden paw found. Zoomies authorized.");
-  spawnPawTrail();
+  funhouse?.classList.add("zoomies");
+  dogPopout?.classList.add("zooming");
+  makePawTrail();
+  setMood("ZOOMIES ACTIVATED.");
   setTimeout(() => {
-    document.body.classList.remove("zoomies");
-    dogPopout.classList.remove("zooming");
-  }, 1800);
-}
-
-function stampRockyAutograph() {
-  if (autographCooldown) {
-    setMood("Rocky's autograph paw is re-inking. Try again in a sec.", 3000);
-    return;
-  }
-  autographCooldown = true;
-  const autograph = document.createElement("div");
-  autograph.className = "rocky-autograph";
-  autograph.style.left = `${12 + Math.random() * 68}%`;
-  autograph.style.top = `${18 + Math.random() * 58}%`;
-  autograph.style.rotate = `${-18 + Math.random() * 36}deg`;
-  autograph.innerHTML = '<span class="paw-sign">🐾</span><span class="signature-text">Rocky was here</span>';
-  autographLayer.append(autograph);
-  setMood("Rocky signed the screen.");
-  setTimeout(() => autograph.remove(), 5700);
-  setTimeout(() => {
-    autographCooldown = false;
-  }, 5000);
-}
-
-function spawnPawTrail() {
-  pawTrail.innerHTML = "";
-  pawTrail.classList.add("show");
-  Array.from({ length: 18 }, (_, index) => {
-    const paw = document.createElement("span");
-    paw.textContent = "🐾";
-    paw.style.left = `${8 + Math.random() * 84}%`;
-    paw.style.top = `${12 + Math.random() * 76}%`;
-    paw.style.animationDelay = `${index * 45}ms`;
-    paw.style.rotate = `${-24 + Math.random() * 48}deg`;
-    pawTrail.append(paw);
-    return paw;
-  });
-  setTimeout(() => {
-    pawTrail.classList.remove("show");
-    pawTrail.innerHTML = "";
+    funhouse?.classList.remove("zoomies");
+    dogPopout?.classList.remove("zooming");
   }, 2600);
 }
 
+function makePawTrail() {
+  if (!pawTrail) return;
+  pawTrail.innerHTML = "";
+  for (let i = 0; i < 18; i += 1) {
+    const paw = document.createElement("span");
+    paw.className = "trail-paw";
+    paw.textContent = "🐾";
+    paw.style.left = `${Math.random() * 92}%`;
+    paw.style.top = `${Math.random() * 88}%`;
+    paw.style.animationDelay = `${Math.random() * 1.1}s`;
+    pawTrail.append(paw);
+  }
+  setTimeout(() => (pawTrail.innerHTML = ""), 5200);
+}
+
+function stampRockyAutograph() {
+  if (!autographLayer) return;
+  const paw = document.createElement("span");
+  paw.className = "signature-paw";
+  paw.textContent = "🐾 Rocky";
+  paw.style.left = `${18 + Math.random() * 58}%`;
+  paw.style.top = `${18 + Math.random() * 58}%`;
+  autographLayer.append(paw);
+  setMood("Rocky signed the screen.");
+  setTimeout(() => paw.remove(), 6200);
+}
+
 function openTreatVideo() {
-  if (treatCooldown) {
-    setMood("Treat bag is cooling down. Try again in a sec.");
+  if (videoCooldown) {
+    setMood("Treat bag cooldown. Try again in a second.");
     return;
   }
-  treatCooldown = true;
-  setMood("You found the secret treat bag.");
-  rickrollFrame.src = "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&playsinline=1";
-  videoModal.classList.add("show");
-  videoModal.setAttribute("aria-hidden", "false");
+  videoCooldown = true;
+  if (rickrollFrame) {
+    rickrollFrame.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+  }
+  showModal(videoModal);
   setTimeout(() => {
-    treatCooldown = false;
+    videoCooldown = false;
   }, 5000);
 }
 
 function closeTreatVideo() {
-  videoModal.classList.remove("show");
-  videoModal.setAttribute("aria-hidden", "true");
-  rickrollFrame.src = "";
+  if (rickrollFrame) rickrollFrame.src = "";
+  hideModal(videoModal);
 }
 
 function openCredits() {
-  creditsModal.classList.add("show");
-  creditsModal.setAttribute("aria-hidden", "false");
+  showModal(creditsModal);
 }
 
 function closeCredits() {
-  creditsModal.classList.remove("show");
-  creditsModal.setAttribute("aria-hidden", "true");
+  hideModal(creditsModal);
 }
 
 function openCommands() {
-  commandsModal.classList.add("show");
-  commandsModal.setAttribute("aria-hidden", "false");
+  showModal(commandsModal);
+  setTimeout(() => commandInput?.focus(), 60);
 }
 
 function closeCommands() {
-  commandsModal.classList.remove("show");
-  commandsModal.setAttribute("aria-hidden", "true");
-}
-
-function closeWelcome() {
-  welcomeModal.classList.remove("show");
-  welcomeModal.setAttribute("aria-hidden", "true");
-}
-
-function closeTerms() {
-  termsModal.classList.remove("show");
-  termsModal.setAttribute("aria-hidden", "true");
-}
-
-function showRiverBadge() {
-  riverBadge.classList.add("show");
-  setMood("Secret River credit found.");
-  setTimeout(() => riverBadge.classList.remove("show"), 3200);
-}
-
-function tossRiverConfetti() {
-  riverCameo.querySelectorAll(".river-confetti").forEach((piece) => piece.remove());
-  const confetti = ["🎉", "✨", "🟦", "🟧", "🦴", "🍬"];
-  Array.from({ length: 18 }, (_, index) => {
-    const piece = document.createElement("span");
-    piece.className = "river-confetti";
-    piece.textContent = confetti[index % confetti.length];
-    piece.style.setProperty("--confetti-x", `${-70 + Math.random() * 140}px`);
-    piece.style.setProperty("--confetti-y", `${-90 - Math.random() * 80}px`);
-    piece.style.animationDelay = `${180 + index * 62}ms`;
-    riverCameo.append(piece);
-    return piece;
-  });
-}
-
-function triggerRiverCameo() {
-  if (riverCooldown) {
-    setMood("River is gathering confetti. Try again in a few seconds.", 3000);
-    return;
-  }
-  riverCooldown = true;
-  showRiverBadge();
-  riverCameo.className = "river-cameo";
-  riverCameo.offsetHeight;
-  riverCameo.classList.add("show", riverWalksRight ? "left-to-right" : "right-to-left");
-  tossRiverConfetti();
-  riverWalksRight = !riverWalksRight;
-  setTimeout(() => {
-    riverCameo.className = "river-cameo";
-    riverCameo.querySelectorAll(".river-confetti").forEach((piece) => piece.remove());
-  }, 5600);
-  setTimeout(() => {
-    riverCooldown = false;
-  }, 10000);
-}
-
-function showFortune() {
-  if (fortuneCooldown) {
-    setMood("Fortune cookie is cooling down. Try again in a sec.", 3000);
-    return;
-  }
-  fortuneCooldown = true;
-  const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-  fortuneCookie.classList.remove("cracked");
-  window.requestAnimationFrame(() => fortuneCookie.classList.add("cracked"));
-  setMood(`Rocky fortune: ${fortune}`, 10000);
-  setTimeout(() => fortuneCookie.classList.remove("cracked"), 900);
-  setTimeout(() => {
-    fortuneCooldown = false;
-  }, 5000);
+  hideModal(commandsModal);
 }
 
 function openBarkTranslator() {
-  barkModal.classList.add("show");
-  barkModal.setAttribute("aria-hidden", "false");
-  setMood("Bark Translator opened.");
+  showModal(barkModal);
 }
 
 function closeBarkTranslator() {
-  barkModal.classList.remove("show");
-  barkModal.setAttribute("aria-hidden", "true");
+  hideModal(barkModal);
 }
 
-function amazonDomainForVisitor() {
-  const locale = (navigator.language || "en-US").toLowerCase();
-  const region = locale.split("-")[1] || "";
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-  const regionMap = {
+function openCourt() {
+  courtShown = true;
+  showModal(courtModal);
+}
+
+function closeCourt() {
+  hideModal(courtModal);
+}
+
+function closeWelcome() {
+  hideModal(welcomeModal);
+  showModal(termsModal);
+}
+
+function closeTerms() {
+  hideModal(termsModal);
+}
+
+function openAmazonPackage() {
+  const country = (navigator.language || "en-US").split("-")[1]?.toLowerCase() || "us";
+  const domains = {
+    us: "amazon.com",
     ca: "amazon.ca",
     mx: "amazon.com.mx",
     gb: "amazon.co.uk",
@@ -424,88 +338,94 @@ function amazonDomainForVisitor() {
     au: "amazon.com.au",
     de: "amazon.de",
     fr: "amazon.fr",
-    it: "amazon.it",
-    es: "amazon.es",
-    jp: "amazon.co.jp",
-    br: "amazon.com.br",
-    in: "amazon.in"
+    jp: "amazon.co.jp"
   };
-  if (regionMap[region]) return regionMap[region];
-  if (timeZone.includes("Canada")) return "amazon.ca";
-  if (timeZone.includes("Mexico")) return "amazon.com.mx";
-  return "amazon.com";
+  const domain = domains[country] || "amazon.com";
+  window.open(`https://www.${domain}/s?k=dog+treats`, "_blank", "noreferrer");
 }
 
-function openAmazonPackage() {
-  if (packageCooldown) {
-    setMood("Package scanner is cooling down. Try again in a sec.", 3000);
-    return;
-  }
-  packageCooldown = true;
-  const domain = amazonDomainForVisitor();
-  setMood("Package inspected. Sending you to the nearest Amazon snack aisle.", 10000);
-  window.open(`https://www.${domain}/s?k=dog+treats`, "_blank", "noreferrer");
-  setTimeout(() => {
-    packageCooldown = false;
-  }, 5000);
+function openRandomTacoRecipe() {
+  const recipe = tacoRecipes[Math.floor(Math.random() * tacoRecipes.length)];
+  setMood("Taco wisdom selected. Opening recipe...");
+  window.open(recipe, "_blank", "noreferrer");
+}
+
+function openFortune() {
+  setMood(`Rocky fortune: ${fortunes[Math.floor(Math.random() * fortunes.length)]}`, 10000);
 }
 
 function triggerAwoo() {
-  title.classList.remove("awoo");
-  dogPopout.classList.add("awoo-dog");
-  window.requestAnimationFrame(() => title.classList.add("awoo"));
-  setMood("Awooo mode activated.");
-  setTimeout(() => {
-    title.classList.remove("awoo");
-    dogPopout.classList.remove("awoo-dog");
-  }, 2600);
-}
-
-function triggerSquirrel() {
-  setMood("SQUIRREL PROTOCOL.");
-  dogPopout.classList.add("squirrel-mode");
-  document.querySelectorAll("button").forEach((button, index) => {
-    button.style.setProperty("--scatter-x", `${-80 + Math.random() * 160}px`);
-    button.style.setProperty("--scatter-y", `${-55 + Math.random() * 110}px`);
-    button.style.animationDelay = `${(index % 5) * 24}ms`;
-    button.classList.add("scatter-button");
-  });
-  setTimeout(() => {
-    dogPopout.classList.remove("squirrel-mode");
-    document.querySelectorAll(".scatter-button").forEach((button) => {
-      button.classList.remove("scatter-button");
-      button.style.removeProperty("--scatter-x");
-      button.style.removeProperty("--scatter-y");
-      button.style.removeProperty("animation-delay");
-    });
-  }, 1800);
+  title?.classList.add("awoo");
+  setMood("Awoooooo.");
+  setTimeout(() => title?.classList.remove("awoo"), 2600);
 }
 
 function triggerHotdogz() {
+  if (!hotdogRain) return;
   hotdogRain.innerHTML = "";
-  hotdogRain.classList.add("show");
-  setMood("HOTDOGZ HAVE BREACHED CONTAINMENT.");
-
-  Array.from({ length: 38 }, (_, index) => {
+  for (let i = 0; i < 28; i += 1) {
     const dog = document.createElement("span");
+    dog.className = "falling-hotdog";
     dog.textContent = "🌭";
     dog.style.left = `${Math.random() * 100}%`;
-    dog.style.animationDelay = `${Math.random() * 0.8}s`;
-    dog.style.animationDuration = `${2.2 + Math.random() * 1.7}s`;
-    dog.style.fontSize = `${1.3 + Math.random() * 1.8}rem`;
-    dog.style.setProperty("--drift", `${-80 + Math.random() * 160}px`);
+    dog.style.top = `${-20 - Math.random() * 55}px`;
+    dog.style.animationDelay = `${Math.random() * 1.5}s`;
     hotdogRain.append(dog);
-    return index;
-  });
+  }
+  setMood("HOTDOGZ MODE.");
+  setTimeout(() => (hotdogRain.innerHTML = ""), 4300);
+}
 
+function triggerRiverCameo() {
+  if (!riverCameo || riverCooldown) return;
+  riverCooldown = true;
+  riverBadge?.classList.add("show");
+  setMood("Secret River credit found.");
+  riverCameo.classList.remove("run-right", "run-left");
+  void riverCameo.offsetWidth;
+  riverCameo.classList.add(riverDirectionRight ? "run-right" : "run-left");
+  riverDirectionRight = !riverDirectionRight;
+  makeConfetti();
+  setTimeout(() => riverBadge?.classList.remove("show"), 6000);
   setTimeout(() => {
-    hotdogRain.classList.remove("show");
-    hotdogRain.innerHTML = "";
-  }, 4300);
+    riverCameo.classList.remove("run-right", "run-left");
+  }, 5200);
+  setTimeout(() => {
+    riverCooldown = false;
+  }, 10000);
+}
+
+function makeConfetti() {
+  if (!hotdogRain) return;
+  for (let i = 0; i < 24; i += 1) {
+    const piece = document.createElement("span");
+    piece.className = "falling-hotdog";
+    piece.textContent = ["✨", "🎉", "⭐", "🦴"][Math.floor(Math.random() * 4)];
+    piece.style.left = `${Math.random() * 100}%`;
+    piece.style.top = `${-20 - Math.random() * 80}px`;
+    piece.style.animationDelay = `${Math.random() * 0.8}s`;
+    hotdogRain.append(piece);
+  }
+  setTimeout(() => (hotdogRain.innerHTML = ""), 4200);
+}
+
+function triggerSquirrel() {
+  dogPopout?.classList.add("squirrel-mode");
+  setMood("SQUIRREL.");
+  document.querySelectorAll(".icon-button, .food-item").forEach((button) => {
+    button.style.transform = `translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px) rotate(${Math.random() * 28 - 14}deg)`;
+  });
+  setTimeout(() => {
+    dogPopout?.classList.remove("squirrel-mode");
+    document.querySelectorAll(".icon-button, .food-item").forEach((button) => {
+      button.style.transform = "";
+    });
+  }, 2500);
 }
 
 function triggerBrainMode() {
   clearTimeout(brainTimer);
+  if (!title) return;
   title.textContent = "ONLY SNACKS.";
   title.classList.add("awoo");
   setMood("No Thoughts Mode: only snacks.");
@@ -515,99 +435,84 @@ function triggerBrainMode() {
   }, 4200);
 }
 
+function triggerNap() {
+  isNapping = true;
+  dogPopout?.classList.add("napping");
+  setMood("Rocky is processing snacks...");
+  setTimeout(() => {
+    isNapping = false;
+    dogPopout?.classList.remove("napping");
+    setMood("Rocky woke up and immediately remembered snacks.");
+  }, 5000);
+}
+
 function runTypedCommand(command, showUnknown = true) {
   const normalized = command.trim().toLowerCase();
   if (!normalized) return false;
-  if (normalized.includes("awoo")) {
-    triggerAwoo();
-    return true;
-  }
-  if (normalized.includes("hotdogz")) {
-    triggerHotdogz();
-    return true;
-  }
-  if (normalized.includes("river")) {
-    triggerRiverCameo();
-    return true;
-  }
-  if (normalized.includes("bark")) {
-    openBarkTranslator();
-    return true;
-  }
-  if (normalized.includes("squirrel")) {
-    triggerSquirrel();
-    return true;
-  }
-  if (normalized.includes("brain")) {
-    triggerBrainMode();
-    return true;
-  }
+  if (normalized.includes("awoo")) return triggerAwoo(), true;
+  if (normalized.includes("hotdogz")) return triggerHotdogz(), true;
+  if (normalized.includes("river")) return triggerRiverCameo(), true;
+  if (normalized.includes("bark")) return openBarkTranslator(), true;
+  if (normalized.includes("squirrel")) return triggerSquirrel(), true;
+  if (normalized.includes("brain")) return triggerBrainMode(), true;
   if (showUnknown) setMood("Unknown command. Try AWOO, RIVER, BARK, HOTDOGZ, SQUIRREL, or BRAIN.", 4200);
   return false;
 }
 
-dogPopout.addEventListener("click", (event) => {
+on(dogPopout, "click", (event) => {
   if (event.target === noseButton) return;
   flipRocky();
 });
 
-noseButton.addEventListener("click", (event) => {
+on(noseButton, "click", (event) => {
   event.stopPropagation();
   boopRocky();
 });
-if (backgroundNoseButton) {
-  backgroundNoseButton.addEventListener("click", boopRocky);
-}
-secretPaw.addEventListener("click", triggerZoomies);
-autographPencil.addEventListener("click", stampRockyAutograph);
-treatBag.addEventListener("click", openTreatVideo);
-videoClose.addEventListener("click", closeTreatVideo);
-videoModal.addEventListener("click", (event) => {
+
+on(backgroundNoseButton, "click", boopRocky);
+on(secretPaw, "click", triggerZoomies);
+on(autographPencil, "click", stampRockyAutograph);
+on(treatBag, "click", openTreatVideo);
+on(videoClose, "click", closeTreatVideo);
+on(videoModal, "click", (event) => {
   if (event.target === videoModal) closeTreatVideo();
 });
-creditsButton.addEventListener("click", openCredits);
-creditsClose.addEventListener("click", closeCredits);
-creditsModal.addEventListener("click", (event) => {
+on(creditsButton, "click", openCredits);
+on(creditsClose, "click", closeCredits);
+on(creditsModal, "click", (event) => {
   if (event.target === creditsModal) closeCredits();
 });
-commandsButton.addEventListener("click", openCommands);
-commandsClose.addEventListener("click", closeCommands);
-commandsModal.addEventListener("click", (event) => {
+on(commandsButton, "click", openCommands);
+on(commandsClose, "click", closeCommands);
+on(commandsModal, "click", (event) => {
   if (event.target === commandsModal) closeCommands();
 });
-commandForm.addEventListener("submit", (event) => {
+on(commandForm, "submit", (event) => {
   event.preventDefault();
-  if (runTypedCommand(commandInput.value)) {
-    commandInput.value = "";
+  if (runTypedCommand(commandInput?.value || "")) {
+    if (commandInput) commandInput.value = "";
     closeCommands();
   }
 });
-letsGoButton.addEventListener("click", closeWelcome);
-termsAccept.addEventListener("click", closeTerms);
-amazonPackage.addEventListener("click", openAmazonPackage);
-tacoRecipeButton.addEventListener("click", openRandomTacoRecipe);
-barkClose.addEventListener("click", closeBarkTranslator);
-barkModal.addEventListener("click", (event) => {
+on(letsGoButton, "click", closeWelcome);
+on(termsAccept, "click", closeTerms);
+on(amazonPackage, "click", openAmazonPackage);
+on(tacoRecipeButton, "click", openRandomTacoRecipe);
+on(fortuneCookie, "click", openFortune);
+on(barkClose, "click", closeBarkTranslator);
+on(barkModal, "click", (event) => {
   if (event.target === barkModal) closeBarkTranslator();
 });
-courtClose.addEventListener("click", closeCourt);
-courtModal.addEventListener("click", (event) => {
+on(courtClose, "click", closeCourt);
+on(courtModal, "click", (event) => {
   if (event.target === courtModal) closeCourt();
 });
-fortuneCookie.addEventListener("click", showFortune);
 
 window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && videoModal.classList.contains("show")) closeTreatVideo();
-  if (event.key === "Escape" && creditsModal.classList.contains("show")) closeCredits();
-  if (event.key === "Escape" && commandsModal.classList.contains("show")) closeCommands();
-  if (event.key === "Escape" && barkModal.classList.contains("show")) closeBarkTranslator();
-  if (event.key === "Escape" && courtModal.classList.contains("show")) closeCourt();
-  if (event.key === "Escape" && termsModal.classList.contains("show")) closeTerms();
-  if (event.target.matches("input, textarea")) return;
-  codeBuffer = `${codeBuffer}${event.key.toLowerCase()}`.slice(-12);
-  if (runTypedCommand(codeBuffer, false)) {
-    codeBuffer = "";
-  }
+  if (event.target && ["INPUT", "TEXTAREA"].includes(event.target.tagName)) return;
+  if (event.key.length !== 1) return;
+  codeBuffer = `${codeBuffer}${event.key.toLowerCase()}`.slice(-20);
+  runTypedCommand(codeBuffer, false) && (codeBuffer = "");
 });
 
 renderFoods();
