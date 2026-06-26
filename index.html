@@ -91,7 +91,14 @@
           something or does something, and typing in some words, such as "awoo" will have a cool
           affect! Ready to sniff around? Click LETS GO!
         </p>
-        <button class="lets-go" id="letsGoButton" type="button">LETS GO!</button>
+       <button
+  class="lets-go"
+  id="letsGoButton"
+  type="button"
+  onclick="document.querySelector('#welcomeModal').classList.remove('show'); document.querySelector('#welcomeModal').setAttribute('aria-hidden', 'true');"
+>
+  LETS GO!
+</button>
       </div>
     </div>
 
