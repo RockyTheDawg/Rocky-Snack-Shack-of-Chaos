@@ -99,7 +99,14 @@
       <div class="terms-panel" role="dialog" aria-modal="true" aria-label="Fake terms">
         <h2>Terms</h2>
         <p>By entering this site, you agree to feed Rocky indefinitely.</p>
-        <button class="terms-accept" id="termsAccept" type="button">I accept the snack contract</button>
+        <button
+  class="terms-accept"
+  id="termsAccept"
+  type="button"
+  onclick="document.querySelector('#termsModal').classList.remove('show'); document.querySelector('#termsModal').setAttribute('aria-hidden', 'true');"
+>
+  I accept the snack contract
+</button>
       </div>
     </div>
 
