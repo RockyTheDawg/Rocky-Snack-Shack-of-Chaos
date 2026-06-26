@@ -26,6 +26,15 @@ body {
   overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
 button {
   border: 0;
   color: inherit;
@@ -96,6 +105,11 @@ h1.awoo {
   animation: titleHowl 2.4s ease-in-out;
 }
 
+h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .subtitle {
   max-width: 620px;
   margin-bottom: 0;
@@ -156,6 +170,23 @@ h1.awoo {
 }
 
 .nose-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.background-nose-button {
+  position: fixed;
+  left: 52%;
+  top: 65%;
+  z-index: 3;
+  width: clamp(72px, 9vw, 130px);
+  height: clamp(54px, 7vw, 96px);
+  translate: -50% -50%;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.background-nose-button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
@@ -229,14 +260,6 @@ h1.awoo {
 
 .food-item.tossing {
   animation: tossToMouth 820ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.food-item.running-away {
-  animation: runAway 1.5s ease-in-out;
-}
-
-.food-item.vacuumed {
-  animation: vacuumFood 1.8s ease-in forwards;
 }
 
 .dog-popout.eating {
@@ -641,33 +664,6 @@ h1.awoo {
   letter-spacing: 0;
 }
 
-.vacuum-button {
-  position: fixed;
-  right: 14%;
-  top: 68%;
-  z-index: 4;
-  width: 48px;
-  height: 48px;
-  background: transparent;
-  color: transparent;
-  opacity: 0.2;
-  transition: opacity 160ms ease, transform 160ms ease;
-}
-
-.vacuum-button::before {
-  content: "🧹";
-  color: #d7e4ff;
-  font-size: 1.8rem;
-  filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.55));
-}
-
-.vacuum-button:hover,
-.vacuum-button:focus-visible {
-  opacity: 1;
-  transform: rotate(8deg) translateY(-4px);
-  outline: none;
-}
-
 .fortune-cookie {
   position: fixed;
   right: 24px;
@@ -942,13 +938,53 @@ h1.awoo {
   line-height: 1.35;
 }
 
+.command-entry {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.command-entry label {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.command-entry div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.command-entry input {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font: inherit;
+  font-weight: 850;
+}
+
+.command-entry button {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #21170d;
+  font-weight: 950;
+}
+
 .commands-panel dl {
   display: grid;
   gap: 10px;
   margin: 0;
 }
 
-.commands-panel div {
+.commands-panel dl > div {
   display: grid;
   grid-template-columns: 110px minmax(0, 1fr);
   gap: 12px;
@@ -1147,32 +1183,6 @@ h1.awoo {
   }
 }
 
-@keyframes runAway {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  35% {
-    transform: translate(70px, -20px) rotate(22deg);
-  }
-  70% {
-    transform: translate(-92px, 18px) rotate(-20deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-}
-
-@keyframes vacuumFood {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(120px, -160px) scale(0.1) rotate(720deg);
-    opacity: 0;
-  }
-}
-
 @keyframes squirrelSpin {
   0% {
     transform: translateX(0) rotate(0deg);
@@ -1348,63 +1358,99 @@ h1.awoo {
 }
 
 @media (max-width: 880px) {
+  body {
+    background-attachment: scroll;
+    background-position: center top;
+  }
+
+  body::before {
+    background: rgba(0, 0, 0, 0.22);
+  }
+
   .funhouse {
-    min-height: auto;
+    min-height: 100svh;
     grid-template-columns: 1fr;
-    gap: 18px;
-    padding-top: 28px;
+    gap: 4px;
+    align-items: start;
+    padding-top: 32px;
   }
 
   .feed-scene {
-    min-height: 520px;
+    min-height: 500px;
   }
 
   .dog-stage {
-    min-height: 500px;
+    min-height: 480px;
   }
 }
 
 @media (max-width: 520px) {
   .funhouse {
     width: min(100% - 24px, 560px);
-    padding-bottom: 90px;
+    padding: 18px 0 94px;
+    gap: 0;
   }
 
   h1 {
     max-width: 100%;
-    font-size: clamp(2.35rem, 10vw, 3.15rem);
+    margin-bottom: 10px;
+    font-size: clamp(1.85rem, 9.8vw, 2.55rem);
+    line-height: 0.98;
+    text-shadow:
+      2px 2px 0 #231a17,
+      5px 5px 0 var(--rust),
+      -2px -2px 0 var(--blue-merle),
+      0 14px 32px rgba(0, 0, 0, 0.55);
   }
 
   .subtitle {
     max-width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.36;
   }
 
   .feed-scene {
-    min-height: 460px;
+    min-height: 472px;
+    place-items: start center;
   }
 
   .dog-stage {
-    min-height: 450px;
+    min-height: 470px;
+    place-items: start center;
   }
 
   .dog-popout {
-    width: min(82vw, 300px);
-    margin-bottom: 112px;
+    width: min(62vw, 218px);
+    margin: 28px 0 0;
+  }
+
+  .background-nose-button {
+    left: 58%;
+    top: 73%;
+    width: 92px;
+    height: 76px;
   }
 
   .food-ground {
-    width: min(100%, calc(100vw - 32px));
-    min-height: 124px;
+    left: 50%;
+    bottom: 68px;
+    width: min(335px, calc(100vw - 48px));
+    min-height: 112px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 22px;
+    justify-items: center;
+    align-items: center;
   }
 
   .food-item {
-    width: 56px;
-    height: 56px;
+    position: static;
+    width: 50px;
+    height: 50px;
   }
 
   .food-icon {
-    font-size: 1.7rem;
+    font-size: 1.55rem;
   }
 
   .food-name {
@@ -1412,54 +1458,80 @@ h1.awoo {
   }
 
   .hidden-treat-bag {
-    width: 66px;
-    height: 66px;
+    left: 12px;
+    bottom: 18px;
+    width: 58px;
+    height: 58px;
   }
 
   .credits-button {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
     right: 12px;
     bottom: 12px;
+    font-size: 1.35rem;
   }
 
   .commands-button {
-    width: 50px;
-    height: 50px;
-    right: 70px;
+    width: 42px;
+    height: 42px;
+    right: 62px;
     bottom: 12px;
+    font-size: 1.18rem;
   }
 
-  .commands-panel div {
+  .commands-panel dl > div {
     grid-template-columns: 1fr;
     gap: 3px;
   }
 
+  .commands-panel {
+    max-height: calc(100dvh - 36px);
+    overflow-y: auto;
+  }
+
+  .command-entry div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .amazon-package {
-    right: 12px;
+    right: 10px;
     left: auto;
     top: 88px;
     bottom: auto;
+    width: 46px;
+    height: 46px;
+  }
+
+  .amazon-package::before {
+    font-size: 1.85rem;
   }
 
   .autograph-pencil {
-    right: 12px;
+    right: 10px;
     left: auto;
-    top: 206px;
+    top: 188px;
     bottom: auto;
+    width: 46px;
+    height: 46px;
   }
 
-  .vacuum-button {
-    right: 76px;
-    top: auto;
-    bottom: 94px;
+  .autograph-pencil::before {
+    font-size: 1.65rem;
   }
 
   .fortune-cookie {
-    right: 12px;
+    right: 10px;
     left: auto;
-    top: 148px;
+    top: 138px;
     bottom: auto;
+    width: 46px;
+    height: 46px;
+  }
+
+  .fortune-cookie::before {
+    font-size: 1.72rem;
   }
 
   .receipt {

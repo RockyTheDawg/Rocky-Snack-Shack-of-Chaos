@@ -3,6 +3,7 @@ const moodCard = document.querySelector("#moodCard");
 const treatBag = document.querySelector("#treatBag");
 const foodGround = document.querySelector("#foodGround");
 const noseButton = document.querySelector("#noseButton");
+const backgroundNoseButton = document.querySelector("#backgroundNoseButton");
 const secretPaw = document.querySelector("#secretPaw");
 const autographPencil = document.querySelector("#autographPencil");
 const autographLayer = document.querySelector("#autographLayer");
@@ -35,7 +36,6 @@ const courtModal = document.querySelector("#courtModal");
 const courtClose = document.querySelector("#courtClose");
 const receipt = document.querySelector("#receipt");
 const receiptLines = document.querySelector("#receiptLines");
-const vacuumButton = document.querySelector("#vacuumButton");
 const fortuneCookie = document.querySelector("#fortuneCookie");
 
 let feedCount = 0;
@@ -164,25 +164,12 @@ function triggerNap() {
   }, 5000);
 }
 
-function triggerSnackTax() {
-  const candidates = [...document.querySelectorAll(".food-item:not(.tossing):not(.running-away)")];
-  if (!candidates.length) return;
-  const target = candidates[Math.floor(Math.random() * candidates.length)];
-  target.classList.add("running-away");
-  target.disabled = true;
-  setMood("Snack tax attempted. Food has fled the scene.");
-  setTimeout(() => {
-    target.classList.remove("running-away");
-    target.disabled = false;
-  }, 1500);
-}
-
 function tossFood(button) {
   if (isNapping) {
     setMood("Rocky is asleep. Snacks must wait 5 business seconds.");
     return;
   }
-  if (button.classList.contains("tossing") || button.classList.contains("running-away")) return;
+  if (button.classList.contains("tossing")) return;
 
   feedCount += 1;
   const food = button.dataset.food;
@@ -201,7 +188,6 @@ function tossFood(button) {
     setMood(`${mood}. ${food} accepted.`);
   }
 
-  if (feedCount % 4 === 0) setTimeout(triggerSnackTax, 420);
   if (Math.random() < 0.18) setTimeout(showSnackDebt, 620);
   if (feedCount >= 10 && !receiptShown) {
     receiptShown = true;
@@ -457,21 +443,6 @@ function triggerAwoo() {
   }, 2600);
 }
 
-function triggerVacuum() {
-  setMood("Forbidden vacuum activated. Snacks are evacuating.");
-  document.querySelectorAll(".food-item").forEach((food) => {
-    food.classList.add("vacuumed");
-    food.disabled = true;
-  });
-  setTimeout(() => {
-    document.querySelectorAll(".food-item").forEach((food) => {
-      food.classList.remove("vacuumed");
-      food.disabled = false;
-    });
-    renderFoods();
-  }, 1800);
-}
-
 function triggerSquirrel() {
   setMood("SQUIRREL PROTOCOL.");
   dogPopout.classList.add("squirrel-mode");
@@ -567,6 +538,7 @@ noseButton.addEventListener("click", (event) => {
   boopRocky();
 });
 
+backgroundNoseButton.addEventListener("click", boopRocky);
 secretPaw.addEventListener("click", triggerZoomies);
 autographPencil.addEventListener("click", stampRockyAutograph);
 treatBag.addEventListener("click", openTreatVideo);
@@ -602,7 +574,6 @@ courtClose.addEventListener("click", closeCourt);
 courtModal.addEventListener("click", (event) => {
   if (event.target === courtModal) closeCourt();
 });
-vacuumButton.addEventListener("click", triggerVacuum);
 fortuneCookie.addEventListener("click", showFortune);
 
 window.addEventListener("keydown", (event) => {
