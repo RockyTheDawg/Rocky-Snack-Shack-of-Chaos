@@ -555,8 +555,9 @@ noseButton.addEventListener("click", (event) => {
   event.stopPropagation();
   boopRocky();
 });
-
-backgroundNoseButton.addEventListener("click", boopRocky);
+if (backgroundNoseButton) {
+  backgroundNoseButton.addEventListener("click", boopRocky);
+}
 secretPaw.addEventListener("click", triggerZoomies);
 autographPencil.addEventListener("click", stampRockyAutograph);
 treatBag.addEventListener("click", openTreatVideo);
