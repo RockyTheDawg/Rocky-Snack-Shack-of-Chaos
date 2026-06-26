@@ -19,6 +19,8 @@ const creditsClose = document.querySelector("#creditsClose");
 const commandsButton = document.querySelector("#commandsButton");
 const commandsModal = document.querySelector("#commandsModal");
 const commandsClose = document.querySelector("#commandsClose");
+const commandForm = document.querySelector("#commandForm");
+const commandInput = document.querySelector("#commandInput");
 const welcomeModal = document.querySelector("#welcomeModal");
 const letsGoButton = document.querySelector("#letsGoButton");
 const termsModal = document.querySelector("#termsModal");
@@ -524,6 +526,37 @@ function triggerBrainMode() {
   }, 4200);
 }
 
+function runTypedCommand(command, showUnknown = true) {
+  const normalized = command.trim().toLowerCase();
+  if (!normalized) return false;
+  if (normalized.includes("awoo")) {
+    triggerAwoo();
+    return true;
+  }
+  if (normalized.includes("hotdogz")) {
+    triggerHotdogz();
+    return true;
+  }
+  if (normalized.includes("river")) {
+    triggerRiverCameo();
+    return true;
+  }
+  if (normalized.includes("bark")) {
+    openBarkTranslator();
+    return true;
+  }
+  if (normalized.includes("squirrel")) {
+    triggerSquirrel();
+    return true;
+  }
+  if (normalized.includes("brain")) {
+    triggerBrainMode();
+    return true;
+  }
+  if (showUnknown) setMood("Unknown command. Try AWOO, RIVER, BARK, HOTDOGZ, SQUIRREL, or BRAIN.", 4200);
+  return false;
+}
+
 dogPopout.addEventListener("click", (event) => {
   if (event.target === noseButton) return;
   flipRocky();
@@ -551,6 +584,13 @@ commandsClose.addEventListener("click", closeCommands);
 commandsModal.addEventListener("click", (event) => {
   if (event.target === commandsModal) closeCommands();
 });
+commandForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (runTypedCommand(commandInput.value)) {
+    commandInput.value = "";
+    closeCommands();
+  }
+});
 letsGoButton.addEventListener("click", closeWelcome);
 termsAccept.addEventListener("click", closeTerms);
 amazonPackage.addEventListener("click", openAmazonPackage);
@@ -572,29 +612,9 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && barkModal.classList.contains("show")) closeBarkTranslator();
   if (event.key === "Escape" && courtModal.classList.contains("show")) closeCourt();
   if (event.key === "Escape" && termsModal.classList.contains("show")) closeTerms();
+  if (event.target.matches("input, textarea")) return;
   codeBuffer = `${codeBuffer}${event.key.toLowerCase()}`.slice(-12);
-  if (codeBuffer.includes("awoo")) {
-    triggerAwoo();
-    codeBuffer = "";
-  }
-  if (codeBuffer.includes("hotdogz")) {
-    triggerHotdogz();
-    codeBuffer = "";
-  }
-  if (codeBuffer.includes("river")) {
-    triggerRiverCameo();
-    codeBuffer = "";
-  }
-  if (codeBuffer.includes("bark")) {
-    openBarkTranslator();
-    codeBuffer = "";
-  }
-  if (codeBuffer.includes("squirrel")) {
-    triggerSquirrel();
-    codeBuffer = "";
-  }
-  if (codeBuffer.includes("brain")) {
-    triggerBrainMode();
+  if (runTypedCommand(codeBuffer, false)) {
     codeBuffer = "";
   }
 });
