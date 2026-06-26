@@ -60,12 +60,19 @@ const foods = [
 const tacoRecipes = [
   "https://www.allrecipes.com/recipe/257865/easy-beef-street-tacos/",
   "https://www.allrecipes.com/recipe/245744/mexican-street-tacos/",
-  "https://www.loveandlemons.com/tacos/",
+  "https://www.allrecipes.com/recipe/70935/taqueria-style-tacos-carne-asada/",
+  "https://www.allrecipes.com/recipe/70343/slow-cooker-chicken-tacos/",
+  "https://www.allrecipes.com/recipe/23916/shrimp-tacos/",
+  "https://www.allrecipes.com/recipe/228124/quick-fish-tacos/",
+  "https://www.allrecipes.com/recipe/222006/disneys-spicy-fish-tacos/",
   "https://www.delish.com/cooking/recipe-ideas/a19636089/baja-fish-tacos-recipe/",
-  "https://www.foodnetwork.com/recipes/food-network-kitchen/chicken-tacos-recipe-2108574",
-  "https://www.simplyrecipes.com/recipes/fish_tacos/",
   "https://www.gimmesomeoven.com/carnitas-recipe/",
-  "https://cookieandkate.com/roasted-cauliflower-and-lentil-tacos/"
+  "https://cookieandkate.com/roasted-cauliflower-and-lentil-tacos/",
+  "https://www.spendwithpennies.com/easy-ground-beef-tacos/",
+  "https://www.isabeleats.com/ground-beef-tacos/",
+  "https://www.recipetineats.com/mexican-shredded-beef-and-tacos/",
+  "https://www.budgetbytes.com/black-bean-tacos/",
+  "https://www.twopeasandtheirpod.com/roasted-sweet-potato-black-bean-tacos/"
 ];
 
 const fortunes = [
@@ -73,8 +80,60 @@ const fortunes = [
   "A snack hidden is a snack temporarily misplaced.",
   "The treat bag knows what you did.",
   "Boop gently. The snack court is watching.",
-  "Today is a good day to feed Rocky twice."
+  "Today is a good day to feed Rocky twice.",
+  "A burger shared is a burger remembered.",
+  "Never trust an empty food bowl. It has secrets.",
+  "The fastest path to happiness is shaped like fries.",
+  "Your next great idea will arrive during snack time.",
+  "If the cookie speaks, listen carefully and bring bacon.",
+  "Rocky believes in you, but mostly in dinner.",
+  "A suspicious crumb is still evidence.",
+  "The paw print points toward destiny. Or the kitchen.",
+  "Your future contains one very dramatic tail wag.",
+  "Snack first, questions later.",
+  "The orange was brave. Rocky was confused.",
+  "Do not argue with the treat jar. It has seniority.",
+  "A tiny awooo can change the whole afternoon.",
+  "The court finds you guilty of insufficient snacks.",
+  "If life gives you lemons, trade them for pancakes.",
+  "Your luck improves by 12% near cheese.",
+  "A hidden button is just a button with stage fright.",
+  "The snack debt collectors are not real. Probably.",
+  "Rocky recommends touching grass, then bringing food inside.",
+  "Today you are protected by one invisible squeaky toy.",
+  "The next boop may alter the timeline.",
+  "Trust the dog. Question the vacuum.",
+  "A taco is just a snack wearing armor.",
+  "The river flows, the snacks vanish, Rocky denies involvement.",
+  "You have unlocked premium crumbs.",
+  "The universe says: one more click.",
+  "The bagel knows your browsing history.",
+  "Your snack aura is crunchy today.",
+  "When in doubt, ask what the Aussie would eat.",
+  "Do not feed the website after midnight. Actually, do.",
+  "Every button has a dream.",
+  "You are closer to dessert than you think.",
+  "The paw has spoken. It said fries.",
+  "Your fortune is loading. Please insert treat.",
+  "Rocky predicts a 100% chance of snack weather.",
+  "A calm day is just zoomies waiting politely.",
+  "The treat bag is not lost. It is hiding with purpose.",
+  "Your destiny has extra sauce.",
+  "The snack court has misplaced all evidence.",
+  "A good friend shares food. A great friend clicks again.",
+  "Rocky has reviewed your vibe and requests soda.",
+  "Beware the forbidden healthy snack.",
+  "The keyboard remembers every AWOO.",
+  "Fortune favors the well-fed.",
+  "Your next click will be legally silly.",
+  "The crumbs are forming a message.",
+  "You are doing great, but Rocky still needs snacks.",
+  "A tiny chaos is still valid chaos.",
+  "The treat jar says hello."
 ];
+
+let lastTacoRecipe = "";
+let lastFortune = "";
 
 const foodCounts = {};
 const comboFed = new Set();
@@ -355,13 +414,26 @@ function openAmazonPackage() {
 }
 
 function openRandomTacoRecipe() {
-  const recipe = tacoRecipes[Math.floor(Math.random() * tacoRecipes.length)];
+  let recipe = tacoRecipes[Math.floor(Math.random() * tacoRecipes.length)];
+  if (tacoRecipes.length > 1) {
+    while (recipe === lastTacoRecipe) {
+      recipe = tacoRecipes[Math.floor(Math.random() * tacoRecipes.length)];
+    }
+  }
+  lastTacoRecipe = recipe;
   setMood("Taco wisdom selected. Opening recipe...");
   window.open(recipe, "_blank", "noreferrer");
 }
 
 function openFortune() {
-  setMood(`Rocky fortune: ${fortunes[Math.floor(Math.random() * fortunes.length)]}`, 10000);
+  let fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+  if (fortunes.length > 1) {
+    while (fortune === lastFortune) {
+      fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+    }
+  }
+  lastFortune = fortune;
+  setMood(`Rocky fortune: ${fortune}`, 10000);
 }
 
 function triggerAwoo() {
