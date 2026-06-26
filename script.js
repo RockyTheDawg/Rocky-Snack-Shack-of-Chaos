@@ -27,6 +27,7 @@ const letsGoButton = document.querySelector("#letsGoButton");
 const termsModal = document.querySelector("#termsModal");
 const termsAccept = document.querySelector("#termsAccept");
 const amazonPackage = document.querySelector("#amazonPackage");
+const tacoRecipeButton = document.querySelector("#tacoRecipeButton");
 const riverBadge = document.querySelector("#riverBadge");
 const riverCameo = document.querySelector("#riverCameo");
 const pawTrail = document.querySelector("#pawTrail");
@@ -82,6 +83,23 @@ const foods = [
   { icon: "🥯", name: "bagel" },
   { icon: "🥞", name: "pancakes" },
   { icon: "🍕", name: "pizza" }
+  const tacoRecipes = [
+  "https://www.allrecipes.com/recipe/257865/easy-beef-street-tacos/",
+  "https://www.allrecipes.com/recipe/245744/mexican-street-tacos/",
+  "https://www.loveandlemons.com/tacos/",
+  "https://www.delish.com/cooking/recipe-ideas/a19636089/baja-fish-tacos-recipe/",
+  "https://www.foodnetwork.com/recipes/food-network-kitchen/chicken-tacos-recipe-2108574",
+  "https://www.simplyrecipes.com/recipes/fish_tacos/",
+  "https://www.gimmesomeoven.com/carnitas-recipe/",
+  "https://cookieandkate.com/roasted-cauliflower-and-lentil-tacos/"
+];
+
+const randomTacoRecipe = tacoRecipes[Math.floor(Math.random() * tacoRecipes.length)];
+
+function openRandomTacoRecipe() {
+  setMood("Taco wisdom selected. Opening recipe...");
+  window.open(randomTacoRecipe, "_blank", "noreferrer");
+}
 ];
 
 const moods = [
