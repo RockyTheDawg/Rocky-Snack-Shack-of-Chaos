@@ -279,12 +279,21 @@ function flipRocky() {
 }
 
 function boopRocky() {
-  boops += 1;
+  boops = Math.min(boops + 1, 10000);
   setMood(getBoopMessage(), boops >= 25 ? 4200 : 3000);
 }
 
 function getBoopMessage() {
-  if (boops >= 200) return `Boops: ${boops}. Rocky has contacted snack legal.`;
+  if (boops >= 10000) return "Boops: 10,000. The boop counter has reached its final snack form.";
+  if (boops >= 7500) return `Boops: ${boops}. Rocky has transcended ordinary nose physics.`;
+  if (boops >= 5000) return `Boops: ${boops}. The snack council is holding an emergency meeting.`;
+  if (boops >= 3000) return `Boops: ${boops}. Rocky's nose is now protected by ancient snack law.`;
+  if (boops >= 2000) return `Boops: ${boops}. The boop department has stopped answering calls.`;
+  if (boops >= 1500) return `Boops: ${boops}. Rocky has requested a boop audit.`;
+  if (boops >= 1000) return `Boops: ${boops}. This is no longer a boop. This is a lifestyle.`;
+  if (boops >= 750) return `Boops: ${boops}. The nose has entered overtime.`;
+  if (boops >= 500) return `Boops: ${boops}. Snack legal has escalated the case.`;
+  if (boops >= 300) return `Boops: ${boops}. Rocky has contacted snack legal.`;
   if (boops >= 150) return `Boops: ${boops}. The nose is now a historical landmark.`;
   if (boops >= 125) return `Boops: ${boops}. Boop economy in shambles.`;
   if (boops >= 100) return `Boops: ${boops}. Boop license revoked.`;
