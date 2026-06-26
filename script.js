@@ -584,6 +584,7 @@ commandForm.addEventListener("submit", (event) => {
 letsGoButton.addEventListener("click", closeWelcome);
 termsAccept.addEventListener("click", closeTerms);
 amazonPackage.addEventListener("click", openAmazonPackage);
+tacoRecipeButton.addEventListener("click", openRandomTacoRecipe);
 barkClose.addEventListener("click", closeBarkTranslator);
 barkModal.addEventListener("click", (event) => {
   if (event.target === barkModal) closeBarkTranslator();
