@@ -65,9 +65,12 @@ h1 {
   line-height: 0.86;
   letter-spacing: 0;
   text-transform: uppercase;
+  animation: neonSnackSign 5.8s steps(1, end) infinite;
   text-shadow:
     0 0 0 #1b2435,
     0 4px 0 #1b2435,
+    0 0 10px rgba(255, 210, 96, 0.35),
+    0 0 24px rgba(95, 140, 255, 0.22),
     6px 6px 0 var(--orange),
     10px 10px 0 #16274b,
     0 14px 18px rgba(0, 0, 0, 0.6);
@@ -79,7 +82,7 @@ h1 a {
 }
 
 h1.awoo {
-  animation: titleWiggle 0.35s ease-in-out 7;
+  animation: titleWiggle 0.35s ease-in-out 7, neonSnackSign 5.8s steps(1, end) infinite;
 }
 
 .subtitle {
@@ -483,6 +486,29 @@ h1.awoo {
   0%, 100% { transform: rotate(0); }
   35% { transform: rotate(-2deg) translateY(-3px); }
   70% { transform: rotate(2deg) translateY(3px); }
+}
+
+@keyframes neonSnackSign {
+  0%, 8%, 10%, 12%, 100% {
+    opacity: 1;
+    filter: brightness(1.08);
+  }
+  9%, 11% {
+    opacity: 0.72;
+    filter: brightness(0.78);
+  }
+  48% {
+    opacity: 1;
+    filter: brightness(1.22);
+  }
+  49% {
+    opacity: 0.86;
+    filter: brightness(0.92);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.16);
+  }
 }
 
 @keyframes chomp {
