@@ -1,12 +1,14 @@
-# Rocky-Snack-Shack-of-Chaos
-
-Live site: https://rockythedawg.github.io/Rocky-Snack-Shack-of-Chaos/
+## Rocky-Snack-Shack-of-Chaos
 
 ## About
 
 This site is about RockyTheDog, his socials, and a very serious Aussie shepherd snack agenda. It is a furry, food-themed joke site made for fun, boredom cures, and random easter eggs.
 
 Visitors can feed Rocky, click around for hidden surprises, type secret commands, and discover silly popups across the page. Consider checking it out and taking a look around!
+
+# Live Site
+
+Live site: https://rockythedawg.github.io/Rocky-Snack-Shack-of-Chaos/
 
 ## Features
 
